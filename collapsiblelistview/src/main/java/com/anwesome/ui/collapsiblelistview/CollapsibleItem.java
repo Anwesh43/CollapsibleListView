@@ -13,7 +13,7 @@ public class CollapsibleItem extends View {
         super(context);
     }
     public void onDraw(Canvas canvas) {
-        
+
     }
     public boolean onTouchEvent(MotionEvent event) {
         return true;
