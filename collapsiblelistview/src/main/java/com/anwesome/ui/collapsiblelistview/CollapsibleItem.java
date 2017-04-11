@@ -19,9 +19,13 @@ public class CollapsibleItem extends View {
     private boolean isAnimated = false;
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ExpandButton expandButton;
+    private OnUpdateListener onUpdateListener;
     public CollapsibleItem(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
+    }
+    public void setOnUpdateListener(OnUpdateListener onUpdateListener) {
+        this.onUpdateListener = onUpdateListener;
     }
     public void onDraw(Canvas canvas) {
         int w = canvas.getWidth(),h = canvas.getHeight();
@@ -43,6 +47,9 @@ public class CollapsibleItem extends View {
         if(isAnimated) {
             expandButton.move();
             scale+=dir*0.2f;
+            if(onUpdateListener!=null) {
+                onUpdateListener.onUpdate();
+            }
             if(expandButton.stop()) {
                 dir = 0;
                 isAnimated = false;
@@ -69,5 +76,8 @@ public class CollapsibleItem extends View {
             }
         }
         return true;
+    }
+    public interface OnUpdateListener {
+        void onUpdate();
     }
 }
