@@ -33,6 +33,12 @@ public class ExpandButton {
     public void move() {
         deg+=dir*9;
     }
+    public float getDir() {
+        return dir;
+    }
+    public boolean stop() {
+        return dir == 0;
+    }
     public boolean handleTap(float x,float y) {
         boolean condition = x>=this.x-this.size/2 && x<=this.x+this.size/2 && y>=this.y-size/2 && y<=this.y+size/2;
         if(condition) {
