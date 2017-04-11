@@ -18,10 +18,10 @@ public class ExpandButton {
         canvas.save();
         canvas.translate(x,y);
         canvas.rotate(deg);
-        paint.setColor(Color.parseColor("#BDBDBD"));
+        paint.setColor(Color.parseColor("#3F51B5"));
         canvas.drawCircle(0,0,size/2,paint);
         paint.setStrokeWidth(size/20);
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.WHITE);
         for(int i=0;i<2;i++) {
             canvas.save();
             canvas.rotate(90*i);

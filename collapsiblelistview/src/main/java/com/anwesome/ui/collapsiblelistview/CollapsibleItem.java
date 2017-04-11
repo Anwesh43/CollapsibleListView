@@ -20,12 +20,28 @@ public class CollapsibleItem extends View {
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private ExpandButton expandButton;
     private OnUpdateListener onUpdateListener;
-    public CollapsibleItem(Context context,Bitmap bitmap) {
+    private String title;
+    public CollapsibleItem(Context context,Bitmap bitmap,String title) {
         super(context);
         this.bitmap = bitmap;
+        this.title = title;
     }
     public void setOnUpdateListener(OnUpdateListener onUpdateListener) {
         this.onUpdateListener = onUpdateListener;
+    }
+    public String adjustText(int w) {
+        String msg = "";
+        for(int i=0;i<title.length();i++) {
+
+            if(paint.measureText(msg+title.charAt(i))>w) {
+                msg+="...";
+                break;
+            }
+            else {
+                msg+=title.charAt(i);
+            }
+        }
+        return msg;
     }
     public void onDraw(Canvas canvas) {
         int w = canvas.getWidth(),h = canvas.getHeight();
@@ -35,6 +51,10 @@ public class CollapsibleItem extends View {
         }
         paint.setColor(Color.parseColor("#E6E6E6"));
         canvas.drawRect(new RectF(0,0,w,h/5),paint);
+        paint.setTextSize(h/15);
+        String text = adjustText(w/2);
+        paint.setColor(Color.BLACK);
+        canvas.drawText(text,w/10,h/10+paint.getTextSize()/2,paint);
         expandButton.draw(canvas,paint);
         canvas.save();
         canvas.translate(0,h/5);

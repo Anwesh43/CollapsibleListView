@@ -31,8 +31,8 @@ public class CollapsibleListView extends ViewGroup {
             viewSize = (9*w)/10;
         }
     }
-    public void addCollapsibleItem(Bitmap bitmap) {
-        CollapsibleItem collapsibleItem = new CollapsibleItem(getContext(),bitmap);
+    public void addCollapsibleItem(Bitmap bitmap,String title) {
+        CollapsibleItem collapsibleItem = new CollapsibleItem(getContext(),bitmap,title);
         collapsibleItem.setOnUpdateListener(new CollapsibleItem.OnUpdateListener() {
             @Override
             public void onUpdate() {

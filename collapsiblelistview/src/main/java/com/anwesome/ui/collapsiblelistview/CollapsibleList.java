@@ -27,6 +27,6 @@ public class CollapsibleList {
         }
     }
     public void addCollapsible(String title, Bitmap bitmap){
-        collapsibleListView.addCollapsibleItem(bitmap);
+        collapsibleListView.addCollapsibleItem(bitmap,title);
     }
 }
