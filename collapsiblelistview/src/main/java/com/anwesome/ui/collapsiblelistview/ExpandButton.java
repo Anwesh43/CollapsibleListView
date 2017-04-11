@@ -43,7 +43,7 @@ public class ExpandButton {
         return dir == 0;
     }
     public boolean handleTap(float x,float y) {
-        boolean condition = x>=this.x-this.size/2 && x<=this.x+this.size/2 && y>=this.y-size/2 && y<=this.y+size/2;
+        boolean condition = x>=this.x-2*this.size/3 && x<=this.x+2*this.size/3 && y>=this.y-2*size/3 && y<=2*this.y+size/3;
         if(condition) {
             dir = deg == 0?1:-1;
         }
