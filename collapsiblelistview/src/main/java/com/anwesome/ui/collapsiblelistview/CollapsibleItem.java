@@ -14,7 +14,6 @@ import android.view.View;
  */
 public class CollapsibleItem extends View {
     private Bitmap bitmap;
-    private boolean opened = false;
     private float scale = 0,dir = 0;
     private int time =0;
     private boolean isAnimated = false;
