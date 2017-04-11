@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
+import com.anwesome.ui.collapsiblelistview.CollapsibleList;
 import com.anwesome.ui.collapsiblelistview.CollapsibleListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,12 +16,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ScrollView scrollView = new ScrollView(this);
-        collapsibleListView = new CollapsibleListView(this);
+        CollapsibleList collapsibleList = new CollapsibleList(this);
         for(int i=0;i<drawables.length;i++) {
-            collapsibleListView.addCollapsibleItem(BitmapFactory.decodeResource(getResources(),drawables[i]));
+            collapsibleList.addCollapsible("title "+i,BitmapFactory.decodeResource(getResources(),drawables[i]));
         }
-        scrollView.addView(collapsibleListView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        setContentView(scrollView);
+        collapsibleList.show();
     }
 }
