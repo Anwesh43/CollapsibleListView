@@ -28,7 +28,7 @@ public class CollapsibleItem extends View {
         int w = canvas.getWidth(),h = canvas.getHeight();
         if(time == 0) {
             bitmap = Bitmap.createScaledBitmap(bitmap,4*w/5,7*h/10,true);
-            expandButton = new ExpandButton(7*w/10,h/10,h/5);
+            expandButton = new ExpandButton(17*w/20,h/10,h/10);
         }
         paint.setColor(Color.parseColor("#E6E6E6"));
         canvas.drawRect(new RectF(0,0,w,h/5),paint);
@@ -36,14 +36,17 @@ public class CollapsibleItem extends View {
         canvas.save();
         canvas.translate(0,h/5);
         canvas.scale(1,scale);
-        canvas.drawBitmap(bitmap,0,0,paint);
+        paint.setColor(Color.parseColor("#E6E6E6"));
+        canvas.drawRect(new RectF(0,0,w,h-h/5),paint);
+        canvas.drawBitmap(bitmap,w/10,h/20,paint);
         canvas.restore();
         time++;
         if(isAnimated) {
             expandButton.move();
-            scale+=dir;
-            if(expandButton.stop() && ((dir ==1 && scale>=1) || (dir==-1 && scale<=0))) {
+            scale+=dir*0.2f;
+            if(expandButton.stop()) {
                 dir = 0;
+                isAnimated = false;
             }
             try {
                 Thread.sleep(50);
@@ -53,6 +56,9 @@ public class CollapsibleItem extends View {
 
             }
         }
+    }
+    public float getScale() {
+        return scale;
     }
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX(),y = event.getY();
